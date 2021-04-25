@@ -1,0 +1,15 @@
+﻿@page "/removeCustomerSupportFromAppointment/{IdAppointment:int}/{IdCustomerSupport:int}"
+@inherits RemoveCustomerSupportFromAppointmentBase
+
+
+
+<CustomerSupportAppointmentInfo CustomerEmail="@($"{CustomerEmail}")" CustomerName="@($"{CustomerName}")"
+                                    CustomerPhone="@($"{CustomerPhone}")" DeleteClick="DeleteClick"
+                                    AppointmentDescription="@($"{AppointmentDescription}")" AppointmentDuration="@($"{AppointmentDuration}")"
+                                    BackToList="Cancel" AppointmentDate="@($"{AppointmentDate}")" AppointmentName="@($"{AppointmentName}")"
+                                    CustomerSupportName="@($"{CustomerSupportName}")"/>
+
+
+<ConfirmDelete @ref="DeleteConfirmation" ConfirmationChanged="DeleteCustomerSupportAppointment"
+                   ConfirmationMessage="@($"Are you sure you want to delete {AppointmentName}?")"
+                   ConfirmationTitle="Appointment Delete Confirmation" />

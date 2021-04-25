@@ -1,0 +1,83 @@
+﻿@page "/appointmentList"
+@inherits AppointmentListBase
+
+
+<br />
+
+<h1 class="card-header text-center">List of Customers</h1>
+
+<br />
+
+<SearchItem OnSearchItem="HandleSearch" />
+
+<br />
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Name</th>
+            <th>Description</th>  
+            <th>Duration</th>
+            <th>Date</th>
+            <th>Support Employees</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Appointments == null)
+        {
+            Console.WriteLine("Load.....");
+        }
+        else if (Appointments.Count == 0)
+        {
+            Console.WriteLine("No Appointment information is available at the moment.");
+        }
+        else
+        {           
+            @foreach (var appointment in Appointments)
+            {                
+                <tr>
+                    <td>
+                        <a type="button" style="text-decoration: none; color:dodgerblue" @onclick="@(() => DetailAppointment(appointment.AppointmentID))">
+                            @appointment.Customer.FullName
+                        </a>
+                    </td>
+                    <td>@appointment.Name</td>
+                    <td>@appointment.Description</td>
+                    <td>@appointment.Duration</td>
+                    <td>@appointment.Date.ToLongDateString()</td>
+                    <td>
+                        <ul>
+                            @foreach (var suppemply in appointment.CustomerSupportAppointments)
+                            {
+                                
+                                <li>
+                                    @suppemply.CustomerSupport.FullName
+                                    <a class="btn btn-danger btn-sm" style="font-weight: bold; float: right"
+                                       href="@($"removeCustomerSupportFromAppointment/{suppemply.AppointmentID}/{suppemply.CustomerSupportID}")">
+                                        <i class="oi oi-person"></i>
+                                    </a>
+                                </li>
+                                <br />
+                            }
+                        </ul>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="@($"addCustomerSupportToAppointment/{appointment.AppointmentID}")"><span class="oi oi-people"></span></a>
+                        <button type="button" @onclick="@(() => UpdateAppointment(appointment.AppointmentID))" class="btn btn-warning" style="font-weight: bold"><span class="oi oi-pencil"></span></button>
+                        <button type="button" @onclick="@(() => DeleteAppointment(appointment.AppointmentID))" class="btn btn-danger" style="font-weight: bold"><span class="oi oi-delete"></span></button>
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+<div colspan="3" class="text-right">
+    <button type="button" style="font-weight: bold" class="btn btn-outline-info btn-rounded" @onclick="CreateAppointment">
+        Create Customer
+        <i class="fas fa-angle-right right"></i>
+    </button>
+</div>

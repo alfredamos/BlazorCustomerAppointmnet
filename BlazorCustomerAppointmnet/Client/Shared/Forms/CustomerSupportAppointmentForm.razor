@@ -1,0 +1,46 @@
+﻿
+<div class="border">
+    <div class="card-header text-center">
+        <h1>CustomerSupportAppointment Form</h1>
+    </div>
+    <div class="card-body">
+        <EditForm Model="CustomerSupportAppointment">
+            <div class="form-group">
+                <label for="CustomerSupportID" class="form-label">Support Employee</label>
+                <CustomInputSelect @bind-Value="CustomerSupportAppointment.CustomerSupportID" class="form-control">
+                    <option>Select Customer Support Officer</option>
+                    @foreach (var customerSupport in SupportEmployees)
+                    {
+                        <option value="@customerSupport.CustomerSupportID">@customerSupport.FullName</option>
+                    }
+                </CustomInputSelect>
+            </div>
+        </EditForm>
+    </div>
+    <div class="card-footer">
+        <div class="form-group">
+            <button type="button" @onclick="UpsertAppointmentSupport" class="btn btn-outline-success btn-block" style="font-weight: bold">@UpsertButton</button>
+            <button type="button" @onclick="CancelMethod" class="btn btn-outline-primary btn-block" style="font-weight: bold">@CancelButton</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public CustomerSupportAppointmentView CustomerSupportAppointment { get; set; } = new();
+
+    [Parameter]
+    public List<CustomerSupportView> SupportEmployees { get; set; } = new();
+
+    [Parameter]
+    public EventCallback UpsertAppointmentSupport { get; set; }
+
+    [Parameter]
+    public EventCallback CancelMethod { get; set; }
+
+    [Parameter]
+    public string UpsertButton { get; set; }
+
+    [Parameter]
+    public string CancelButton { get; set; }
+}

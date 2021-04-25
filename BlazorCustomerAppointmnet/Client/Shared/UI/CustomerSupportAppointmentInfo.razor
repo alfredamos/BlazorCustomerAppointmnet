@@ -1,0 +1,84 @@
+﻿
+
+<div class="border" style="width: 30%">
+    <div class="card-header text-center">
+        <h3>Customer & Customer Support Meeting Detail</h3>
+    </div>
+    <div class="card-body">
+       
+        <table>
+            <tbody>               
+                <tr>
+                    <td><strong>Name : </strong>@AppointmentName</td>
+                </tr>
+                <tr>
+                    <td><strong>Description : </strong>@AppointmentDescription</td>
+                </tr>
+                <tr>
+                    <td><strong>Duration : </strong>@($"{AppointmentDuration}")"</td>
+                </tr>
+                <tr>
+                    <td><strong>Date : </strong>@AppointmentDate</td>
+                </tr>
+                <tr>
+                    <td><strong>Customer : </strong>@CustomerName</td>
+                </tr>
+                <tr>
+                    <td><strong>Customer Phone : </strong>@CustomerPhone</td>
+                </tr>
+                <tr>
+                    <td><strong>Customer Email : </strong>@CustomerEmail</td>
+                </tr>               
+                <tr>
+                    <td><strong>Support Employee : </strong>@CustomerSupportName</td>
+                </tr>
+                
+            </tbody>
+
+        </table>
+        
+    </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-outline-danger btn-block" @onclick="DeleteClick" style="font-weight: bold">
+            Delete
+        </button>
+        <button type="button" class="btn btn-outline-primary btn-block" @onclick="BackToList" style="font-weight: bold">
+            Back to List
+        </button>
+    </div>
+</div>
+
+
+@code {    
+    [Parameter]
+    public string AppointmentName { get; set; }
+
+    [Parameter]
+    public string AppointmentDescription { get; set; }
+
+    [Parameter]
+    public string AppointmentDuration { get; set; }
+
+    [Parameter]
+    public string AppointmentDate { get; set; }
+
+    [Parameter]
+    public string CustomerSupportName { get; set; }
+
+    [Parameter]
+    public string CustomerName { get; set; }
+
+    [Parameter]
+    public string CustomerPhone { get; set; }
+
+    [Parameter]
+    public string CustomerEmail { get; set; }
+
+    [Parameter]
+    public EventCallback DeleteClick { get; set; }
+
+    [Parameter]
+    public EventCallback BackToList { get; set; }
+
+
+}

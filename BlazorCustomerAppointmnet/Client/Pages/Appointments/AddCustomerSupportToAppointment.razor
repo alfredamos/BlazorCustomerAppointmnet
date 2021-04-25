@@ -1,0 +1,6 @@
+﻿@page "/addCustomerSupportToAppointment/{Id:int}"
+@inherits AddCustomerSupportToAppointmentBase
+
+<CustomerSupportAppointmentForm CustomerSupportAppointment="CustomerSupportAppointment" 
+                        SupportEmployees="SupportEmployees" UpsertAppointmentSupport="CreateCustomerSupportAppointment"
+                        CancelMethod="Cancel" UpsertButton="Create" CancelButton="Cancel"/>

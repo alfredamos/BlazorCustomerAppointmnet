@@ -1,0 +1,5 @@
+﻿@page "/editAppointment/{Id:int}"
+@inherits EditAppointmentBase
+
+<AppointmentForm Appointment="Appointment" Customers="Customers" UpsertCustomerSupport="UpdateAppointment"
+                 CancelMethod="Cancel" UpsertButton="Save" CancelButton="Cancel" />

@@ -1,0 +1,47 @@
+﻿
+<div class="border" style="width: 30%">
+    <div class="card-header text-center">
+        <h3>Customer Detail</h3>
+        <img style="width:200px; height:200px" src="@Customer.PhotoPath"/>
+    </div>
+    <div class="card-body">
+        <table>
+            <tbody>
+                <tr>
+                    <td><strong>Full Name : </strong>@Customer.FullName</td>
+                </tr>
+                <tr>
+                    <td><strong>Email Address : </strong>@Customer.Email</td>
+                </tr>
+                <tr>
+                    <td><strong>Phone Number : </strong>@Customer.Email</td>
+                </tr>
+                <tr>
+                    <td><strong>Birth Date : </strong>@Customer.DateOfBirth.ToLongDateString()</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-outline-danger btn-block" @onclick="DeleteClick" style="font-weight: bold">
+            Delete
+        </button>
+        <button type="button" class="btn btn-outline-primary btn-block" @onclick="BackToList" style="font-weight: bold">
+            Back to List
+        </button>
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public CustomerView Customer { get; set; } = new();
+
+    [Parameter]
+    public EventCallback DeleteClick { get; set; }
+
+    [Parameter]
+    public EventCallback BackToList { get; set; }
+
+
+}

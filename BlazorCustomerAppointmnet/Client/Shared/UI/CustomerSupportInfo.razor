@@ -1,0 +1,40 @@
+﻿
+<div class="border" style="width: 30%">
+    <div class="card-header text-center">
+        <h3>Support Employee Detail</h3>
+    </div>
+    <div class="card-body">
+        <table>
+            <tbody>
+                <tr>
+                    <td><strong>Full Name : </strong>@CustomerSupport.FullName</td>
+                </tr>               
+                <tr>
+                    <td><strong>Role : </strong>@CustomerSupport.Role</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-outline-danger btn-block" @onclick="DeleteClick" style="font-weight: bold">
+            Delete
+        </button>
+        <button type="button" class="btn btn-outline-primary btn-block" @onclick="BackToList" style="font-weight: bold">
+            Back to List
+        </button>
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public CustomerSupportView CustomerSupport { get; set; } = new();
+
+    [Parameter]
+    public EventCallback DeleteClick { get; set; }
+
+    [Parameter]
+    public EventCallback BackToList { get; set; }
+
+
+}

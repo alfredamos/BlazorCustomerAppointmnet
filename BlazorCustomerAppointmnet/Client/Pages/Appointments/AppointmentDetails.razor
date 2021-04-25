@@ -1,0 +1,11 @@
+﻿@page "/appointmentDetails/{Id:int}"
+@inherits AppointmentDetailsBase
+
+
+<AppointmentInfo Appointment="Appointment" CustomerName="@($"{CustomerName}")" CustomerEmail="@($"{CustomerEmail}")" 
+                 CustomerPhone="@($"{CustomerPhone}")" DeleteClick="DeleteClick" BackToList="Cancel"/>
+
+<ConfirmDelete @ref="DeleteConfirmation" ConfirmationChanged="AppointmentToDelete" ConfirmationMessage="@($"Are you sure you want to delete {Appointment.Name}?")"
+               ConfirmationTitle="Appointment Delete Confirmation" />
+
+

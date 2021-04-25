@@ -1,0 +1,65 @@
+﻿
+
+<div class="border" style="width: 30%">
+    <div class="card-header text-center">
+        <h3>Book Detail</h3>
+    </div>
+    <div class="card-body">
+        <table>
+            <tbody>
+                <tr>
+                    <td><strong>Name : </strong>@Appointment.Name</td>
+                </tr>
+                <tr>
+                    <td><strong>Description : </strong>@Appointment.Description</td>
+                </tr>
+                <tr>
+                    <td><strong>Duration : </strong>@Appointment.Duration</td>
+                </tr>
+                <tr>
+                    <td><strong>Date : </strong>@Appointment.Date</td>
+                </tr>
+                <tr>
+                    <td><strong>Customer : </strong>@CustomerName</td>
+                </tr>
+                <tr>
+                    <td><strong>Customer Phone : </strong>@CustomerPhone</td>
+                </tr>
+                <tr>
+                    <td><strong>Customer Email : </strong>@CustomerEmail</td>
+                </tr>               
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-outline-danger btn-block" @onclick="DeleteClick" style="font-weight: bold">
+            Delete
+        </button>
+        <button type="button" class="btn btn-outline-primary btn-block" @onclick="BackToList" style="font-weight: bold">
+            Back to List
+        </button>
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public AppointmentView Appointment { get; set; } = new();
+
+    [Parameter]
+    public string CustomerName { get; set; }
+
+    [Parameter]
+    public string CustomerPhone { get; set; }
+
+    [Parameter]
+    public string CustomerEmail { get; set; }
+
+    [Parameter]
+    public EventCallback DeleteClick { get; set; }
+
+    [Parameter]
+    public EventCallback BackToList { get; set; }
+
+
+}

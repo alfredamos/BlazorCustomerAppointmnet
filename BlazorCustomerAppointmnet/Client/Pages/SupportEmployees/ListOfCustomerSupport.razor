@@ -1,0 +1,20 @@
+﻿@page "/listOfCustomerSupport"
+@inherits ListOfCustomerSupportBase
+
+@if (CustomerSupports == null)
+{
+    <h1>Loading....</h1>
+}
+else if (CustomerSupports.Count == 0)
+{
+    <h1>No available Customer data</h1>
+}
+else
+{
+    foreach (var customerSupport in CustomerSupports)
+    {
+       <CustomerSupportInfo CustomerSupport="customerSupport"/>
+        <br />
+    }
+}
+

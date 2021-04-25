@@ -1,0 +1,23 @@
+﻿@page "/listOfCustomers"
+@inherits ListOfCustomerSupportBase
+
+@if (Customers == null)
+{
+    <h1>Loading....</h1>
+}
+else if (Customers.Count == 0)
+{
+    <h1>No available Customer data</h1>
+}
+else
+{
+    foreach (var customer in Customers)
+    {
+        <DisplayCustomer Customer="customer" UpdateCustomerL="@(() => UpdateCustomer(customer.CustomerID))" DeleteClickL="@(() => DeleteCustomer(customer.CustomerID))"
+                         ShowFooterMethod="ShowFooterMethod" HideFooterMethod="HideFooterMethod" ShowCancelMethodButton="false" HideFooter="HideFooter" ShowFooter="ShowFooter" URL="@($"/customerDetails/{customer.CustomerID}")" />
+
+
+        <br />
+    }
+}
+

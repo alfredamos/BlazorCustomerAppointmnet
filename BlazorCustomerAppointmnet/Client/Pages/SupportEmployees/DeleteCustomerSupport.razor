@@ -1,0 +1,7 @@
+﻿@page "/deleteCustomerSupport/{Id:int}"
+@inherits DeleteCustomerSupportBase
+
+<CustomerSupportInfo CustomerSupport="CustomerSupport" DeleteClick="DeleteClick" BackToList="Cancel" />
+
+<ConfirmDelete @ref="DeleteConfirmation" ConfirmationChanged="CustomerSupportToDelete" ConfirmationMessage="@($"Are you sure you want to delete {NameOfCustomerSupport}?")"
+               ConfirmationTitle="Customer Delete Confirmation" />

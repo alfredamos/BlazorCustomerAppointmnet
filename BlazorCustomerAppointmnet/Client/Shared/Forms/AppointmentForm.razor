@@ -1,0 +1,70 @@
+﻿
+
+<div class="border">
+    <div class="card-header text-center">
+        <h1>Author Form</h1>
+    </div>
+    <div class="card-body">
+        <EditForm Model="Appointment">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="form-group">
+                <label for="Name" class="form-label">Name</label>
+                <InputText @bind-Value="Appointment.Name" class="form-control" placeholder="Name" />
+                <ValidationMessage For="@(() => Appointment.Name)" />
+            </div>
+            <div class="form-group">
+                <label for="Description" class="form-label">Description</label>
+                <InputTextArea @bind-Value="Appointment.Description" class="form-control" placeholder="Description" />
+                <ValidationMessage For="@(() => Appointment.Description)" />
+            </div>
+            <div class="form-group">
+                <label for="Duration" class="form-label">Duration</label>
+                <InputNumber @bind-Value="Appointment.Duration" class="form-control" placeholder="Duration" />
+                <ValidationMessage For="@(() => Appointment.Duration)" />
+            </div>
+            <div class="form-group">
+                <label for="Date" class="form-label">Date</label>
+                <InputDate @bind-Value="Appointment.Date" class="form-control" placeholder="Date" />
+                <ValidationMessage For="@(() => Appointment.Date)" />
+            </div>
+            <div class="form-group">
+                <label for="CustomerID" class="form-label">Customer</label>
+                <CustomInputSelect @bind-Value="Appointment.CustomerID" class="form-control">
+                    <option>Select Customer</option>
+                    @foreach (var customer in Customers)
+                    {
+                        <option value="@customer.CustomerID">@customer.FullName</option>
+                    }
+                </CustomInputSelect>
+            </div>
+        </EditForm>
+    </div>
+    <div class="card-footer">
+        <div class="form-group">
+            <button type="button" @onclick="UpsertCustomerSupport" class="btn btn-outline-success btn-block" style="font-weight: bold">@UpsertButton</button>
+            <button type="button" @onclick="CancelMethod" class="btn btn-outline-primary btn-block" style="font-weight: bold">@CancelButton</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public AppointmentView Appointment { get; set; } = new();
+
+    [Parameter]
+    public List<CustomerView> Customers { get; set; }
+
+    [Parameter]
+    public EventCallback UpsertCustomerSupport { get; set; }
+
+    [Parameter]
+    public EventCallback CancelMethod { get; set; }
+
+    [Parameter]
+    public string UpsertButton { get; set; }
+
+    [Parameter]
+    public string CancelButton { get; set; }
+
+}

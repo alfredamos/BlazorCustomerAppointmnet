@@ -1,0 +1,48 @@
+﻿
+
+<div class="border">
+    <div class="card-header text-center">
+        <h1>Author Inclusion Form</h1>
+    </div>
+    <div class="card-body">
+        <EditForm Model="CustomerSupport">
+            <div class="form-group">
+                <label for="CustomerSupportID" class="form-label">Customer Support</label>
+                <CustomInputSelect @bind-Value="CustomerSupport.CustomerSupportID" class="form-control">
+                    <option>Select Customer Support Staff</option>
+                    @foreach (var employee in SupportEmployees)
+                    {
+                        <option value="@employee.CustomerSupportID">@employee.FullName</option>
+                    }
+                </CustomInputSelect>
+            </div>
+        </EditForm>
+    </div>
+    <div class="card-footer">
+        <div class="form-group">
+            <button type="button" @onclick="UpsertAppointment" class="btn btn-outline-success btn-block" style="font-weight: bold">@UpsertButton</button>
+            <button type="button" @onclick="CancelMethod" class="btn btn-outline-primary btn-block" style="font-weight: bold">@CancelButton</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public CustomerSupportView CustomerSupport { get; set; } = new();
+
+    [Parameter]
+    public List<CustomerSupportView> SupportEmployees { get; set; } = new();
+
+    [Parameter]
+    public EventCallback UpsertAppointment { get; set; }
+
+    [Parameter]
+    public EventCallback CancelMethod { get; set; }
+
+    [Parameter]
+    public string UpsertButton { get; set; }
+
+    [Parameter]
+    public string CancelButton { get; set; }
+
+}
