@@ -3,56 +3,62 @@
 
 
 <br />
+<div class="border">
+    <div class="card-header text-center">
+        <h2>List of Customer Supports</h2>
+    </div>
+    <div class="card-body">
+        <br />
 
-<h1 class="card-header text-center">List of Customer Supports</h1>
+        <SearchItem OnSearchItem="HandleSearch" />
 
-<br />
+        <br />
 
-<SearchItem OnSearchItem="HandleSearch" />
-
-<br />
-
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Name</th>            
-            <th>Role</th>
-            <th>Update</th>
-            <th>Remove</th>
-        </tr>
-    </thead>
-    <tbody>
-
-        @if (CustomerSupports == null)
-        {
-            Console.WriteLine("Load.....");
-        }
-        else if (CustomerSupports.Count == 0)
-        {
-            Console.WriteLine("No CustomerSupport Support information is available at the moment.");
-        }
-        else
-        {
-            @foreach (var customerSupport in CustomerSupports)
-            {                
+        <table class="table table-bordered">
+            <thead>
                 <tr>
-                    <td>
-                        <a type="button" style="text-decoration: none; color:dodgerblue" @onclick="@(() => DetailCustomer(customerSupport.CustomerSupportID))">
-                            @customerSupport.FullName
-                        </a>
-                    </td>
-                    <td>@customerSupport.Role</td>                    
-                    <td><button type="button" @onclick="@(() => UpdateCustomer(customerSupport.CustomerSupportID))" class="btn btn-warning" style="font-weight: bold"><span class="oi oi-pencil"></span></button></td>
-                    <td><button type="button" @onclick="@(() => DeleteCustomer(customerSupport.CustomerSupportID))" class="btn btn-danger" style="font-weight: bold"><span class="oi oi-delete"></span></button></td>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Update</th>
+                    <th>Remove</th>
                 </tr>
-            }
-        }
+            </thead>
+            <tbody>
 
-    </tbody>
-</table>
-<div colspan="3" class="text-right">
-    <button type="button" style="font-weight: bold" class="btn btn-outline-info btn-rounded" @onclick="CreateCustomer">
-        Create Customer Support
-        <i class="fas fa-angle-right right"></i>
-    </button>
+                @if (CustomerSupports == null)
+                {
+                    Console.WriteLine("Load.....");
+                }
+                else if (CustomerSupports.Count == 0)
+                {
+                    Console.WriteLine("No CustomerSupport Support information is available at the moment.");
+                }
+                else
+                {
+                    @foreach (var customerSupport in CustomerSupports)
+                    {
+                        <tr>
+                            <td>
+                                <a type="button" style="text-decoration: none; color:dodgerblue" @onclick="@(() => DetailCustomer(customerSupport.CustomerSupportID))">
+                                    @customerSupport.FullName
+                                </a>
+                            </td>
+                            <td>@customerSupport.Role</td>
+                            <td><button type="button" @onclick="@(() => UpdateCustomer(customerSupport.CustomerSupportID))" class="btn btn-warning" style="font-weight: bold"><span class="oi oi-pencil"></span></button></td>
+                            <td><button type="button" @onclick="@(() => DeleteCustomer(customerSupport.CustomerSupportID))" class="btn btn-danger" style="font-weight: bold"><span class="oi oi-delete"></span></button></td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <div colspan="3" class="text-right">
+            <button type="button" style="font-weight: bold" class="btn btn-outline-info btn-rounded" @onclick="CreateCustomer">
+                Create Customer Support
+                <i class="fas fa-angle-right right"></i>
+            </button>
+        </div>
+    </div>
 </div>

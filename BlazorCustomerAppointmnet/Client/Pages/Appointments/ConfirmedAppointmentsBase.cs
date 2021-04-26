@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BlazorCustomerAppointmnet.Client.Pages.Appointments
 {
-    public class AppointmentListBase : ComponentBase
+    public class ConfirmedAppointmentsBase : ComponentBase
     {
         [Inject]
         public IAppointmentService AppointmentService { get; set; }
@@ -32,7 +32,7 @@ namespace BlazorCustomerAppointmnet.Client.Pages.Appointments
         protected async override Task OnInitializedAsync()
         {
             var appointmentsDB = (await AppointmentService.GetAll()).ToList();
-            AppointmentsDB = appointmentsDB.Where(x => x.IsConfirmed.Equals(false)).ToList();
+            AppointmentsDB = appointmentsDB.Where(x => x.IsConfirmed.Equals(true)).ToList();
 
             Mapper.Map(AppointmentsDB, Appointments);
         }
@@ -54,6 +54,7 @@ namespace BlazorCustomerAppointmnet.Client.Pages.Appointments
                 NavigationManager.NavigateTo("confirmedAppointments");
             }
         }
-        
+
+
     }
 }
