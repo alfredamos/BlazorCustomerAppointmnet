@@ -77,12 +77,12 @@ namespace BlazorCustomerAppointmnet.Client.Pages.Appointments
                 await CustomerSupportAppointmentService.DeleteEntity(IdAppointment, IdCustomerSupport);
 
             }
-            NavigationManager.NavigateTo("/appointmentList");
+            NavigationManager.NavigateTo("confirmedAppointments");
         }
 
         protected void Cancel()
         {
-            NavigationManager.NavigateTo("/appointmentList");
+            NavigationManager.NavigateTo("confirmedAppointments");
         }
 
     }
