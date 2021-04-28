@@ -55,9 +55,12 @@
                             </ul>
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="@($"/addCustomerSupportToAppointment/{appointment.AppointmentID}")"><span class="oi oi-people"></span></a>
-                            <a type="button" href="@($"/editAppointment/{appointment.AppointmentID}")" class="btn btn-warning" style="font-weight: bold"><span class="oi oi-pencil"></span></a>
-                            <a type="button" href="@($"/deleteAppointment/{appointment.AppointmentID}")" class="btn btn-danger" style="font-weight: bold"><span class="oi oi-delete"></span></a>
+                            @if (IsShow)
+                            {
+                                <a class="btn btn-primary" href="@($"/addCustomerSupportToAppointment/{appointment.AppointmentID}")"><span class="oi oi-people"></span></a>
+                            }
+                            <a type="button" href="@($"/editAppointment/{appointment.AppointmentID}")" class="btn btn-warning mb-2" style="font-weight: bold"><span class="oi oi-pencil"></span></a>
+                            <a type="button" href="@($"/deleteAppointment/{appointment.AppointmentID}")" class="btn btn-danger mb-2" style="font-weight: bold"><span class="oi oi-delete"></span></a>
                         </td>
                         @if (!appointment.IsConfirmed)
                         {
@@ -89,10 +92,14 @@
     public List<AppointmentView> Appointments { get; set; }
 
     [Parameter]
+    public bool IsShow { get; set; } = false;
+
+    [Parameter]
     public EventCallback<int> OnConfirmationed { get; set; }
 
     private async Task OnConfirmed(int id)
     {
+        Console.WriteLine("In ApplistInfo, id : " + id);
         await OnConfirmationed.InvokeAsync(id);
     }
 }

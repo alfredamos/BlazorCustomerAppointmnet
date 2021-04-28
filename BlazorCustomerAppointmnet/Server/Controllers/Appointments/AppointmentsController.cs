@@ -74,15 +74,15 @@ namespace BlazorCustomerAppointmnet.Server.Controllers.Appointments
                     return BadRequest("Id mismatch.");
                 }
 
-                var appointmnetToUpdate = await _appointmentRepository.GetById(id);
-                if (appointmnetToUpdate == null)
+                var appointmentToUpdate = await _appointmentRepository.GetById(id);
+                if (appointmentToUpdate == null)
                 {
                     return NotFound($"Appointment with Id = {id} not found.");
                 }
 
-                _mapper.Map(appointment, appointmnetToUpdate);
+                _mapper.Map(appointment, appointmentToUpdate);
 
-                return await _appointmentRepository.UpdateEntity(appointmnetToUpdate);
+                return await _appointmentRepository.UpdateEntity(appointmentToUpdate);
             }
             catch (Exception)
             {

@@ -27,9 +27,9 @@ namespace BlazorCustomerAppointmnet.Client.Pages.Appointments
         [Parameter]
         public int Id { get; set; }
 
-        public Appointment AppointmentDB { get; set; } = new Appointment();
+        public Appointment AppointmentDB { get; set; } = new();
 
-        public AppointmentView Appointment { get; set; } = new AppointmentView();
+        public AppointmentView Appointment { get; set; } = new();
 
         public List<Customer> CustomersDB { get; set; } = new();
 

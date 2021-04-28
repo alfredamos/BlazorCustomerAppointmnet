@@ -27,12 +27,25 @@ namespace BlazorCustomerAppointmnet.Client.Pages.Appointments
 
         public List<AppointmentView> Appointments { get; set; } = new List<AppointmentView>();
 
+        public int AllAppointments { get; set; }
+
+        public int ConfirmedAppointments { get; set; }
+
+        public int PendingAppointments { get; set; }
+
         public string FullName { get; set; }
+
+        public bool IsShow { get; set; } = true;
 
         protected async override Task OnInitializedAsync()
         {
             var appointmentsDB = (await AppointmentService.GetAll()).ToList();
+            AllAppointments = appointmentsDB.Count();
+
             AppointmentsDB = appointmentsDB.Where(x => x.IsConfirmed.Equals(true)).ToList();
+            ConfirmedAppointments = AppointmentsDB.Count();
+
+            PendingAppointments = AllAppointments - ConfirmedAppointments;
 
             Mapper.Map(AppointmentsDB, Appointments);
         }

@@ -5,14 +5,25 @@
 <br />
 <div class="border">
     <div class="card-header text-center">
-        <h2>List of Confirmed Appointments</h2>
+        <h3><strong>Confirmed Appointments</strong></h3>
+        <hr />
+        <div class="row">
+            <div class="col-3 card mr-auto" style="background-color: skyblue;">
+                <h2><strong>All : @AllAppointments</strong></h2>
+            </div>
+            <div class="col-3 card mr-auto" style="background-color: darkseagreen;">
+                <h2><strong>Confirmed : @ConfirmedAppointments</strong></h2>
+            </div>
+            <div class="col-3 card" style="background-color: goldenrod;">
+                <h2><strong>Pending : @PendingAppointments</strong></h2>
+            </div>
+        </div>
+        <hr />
+        <h3><strong>Dashboard</strong></h3>
     </div>
 
     <br />
 
-    <SearchItem OnSearchItem="HandleSearch" />
 
-    <br />
-
-    <AppointmentListInfo Appointments="Appointments" OnConfirmationed="OnConfirmed" />
+    <AppointmentListInfo Appointments="Appointments" IsShow="IsShow" OnConfirmationed="OnConfirmed" />
 </div>

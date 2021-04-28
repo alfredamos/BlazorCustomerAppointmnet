@@ -47,13 +47,13 @@ namespace BlazorCustomerAppointmnet.Client.Pages.Appointments
 
             if (appointment != null)
             {
-                NavigationManager.NavigateTo("/appointmentList");
+                NavigationManager.NavigateTo("/pendingAppointments");
             }
         }
 
         protected void Cancel()
         {
-            NavigationManager.NavigateTo("/appointmentList");
+            NavigationManager.NavigateTo("/pendingAppointments");
         }
     }
 }

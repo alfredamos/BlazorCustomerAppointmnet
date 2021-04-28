@@ -77,12 +77,14 @@ namespace BlazorCustomerAppointmnet.Server.SQL
         }
 
         public async Task<Appointment> UpdateEntity(Appointment updatedEntity)
-        {
+        {            
             var appointment = _context.Appointments.Attach(updatedEntity);
             appointment.State = EntityState.Modified;
+            
             await _context.SaveChangesAsync();
-
+           
             return appointment.Entity;
         }
+       
     }
 }

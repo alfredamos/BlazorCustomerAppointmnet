@@ -1,11 +1,11 @@
-﻿@page "/appointmentList"
-@inherits AppointmentListBase
+﻿@page "/unConfirmedAppointments"
+@inherits UnConfirmedAppointmentsBase
 
 
 <br />
 <div class="border">
     <div class="card-header text-center">
-        <h3><strong>All Appointments</strong></h3>
+        <h3><strong>Pending Appointments</strong></h3>
         <hr />
         <div class="row">
             <div class="col-3 card mr-auto" style="background-color: skyblue;">
@@ -24,9 +24,6 @@
 
     <br />
 
-    <SearchItem OnSearchItem="HandleSearch" />
-
-    <br />
 
     <AppointmentListInfo Appointments="Appointments" OnConfirmationed="OnConfirmed" />
 </div>
