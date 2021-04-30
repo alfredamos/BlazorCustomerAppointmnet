@@ -19,6 +19,9 @@ namespace BlazorCustomerAppointmnet.Client.Pages.Appointments
         public ICustomerService CustomerService { get; set; }
 
         [Inject]
+        public ICustomerSupportAppointmentService CustomerSupportAppointmentService { get; set; }
+
+        [Inject]
         public NavigationManager NavigationManager { get; set; }
 
         [Inject]
@@ -35,10 +38,17 @@ namespace BlazorCustomerAppointmnet.Client.Pages.Appointments
 
         public List<CustomerView> Customers { get; set; } = new();
 
+        public List<CustomerSupportAppointment> CustomerSupportAppointmentsDB { get; set; } = new();
+
         protected async override Task OnInitializedAsync()
         {
             AppointmentDB = await AppointmentService.GetById(Id);
             Mapper.Map(AppointmentDB, Appointment);
+
+            CustomerSupportAppointmentsDB = AppointmentDB.CustomerSupportAppointments;
+
+            if (CustomerSupportAppointmentsDB == null) Console.WriteLine("It is null");
+            if (CustomerSupportAppointmentsDB != null) Console.WriteLine("It is not null");
 
             CustomersDB = (await CustomerService.GetAll()).ToList();
             Mapper.Map(CustomersDB, Customers);
@@ -47,6 +57,8 @@ namespace BlazorCustomerAppointmnet.Client.Pages.Appointments
         protected async Task UpdateAppointment()
         {
             Mapper.Map(Appointment, AppointmentDB);
+           
+            await DeleteMultipleCustomerSupportAppointments(CustomerSupportAppointmentsDB);
 
             var appointment = await AppointmentService.UpdateEntity(AppointmentDB);
 
@@ -60,5 +72,15 @@ namespace BlazorCustomerAppointmnet.Client.Pages.Appointments
         {
             NavigationManager.NavigateTo("/appointmentList");
         }
+
+        private async Task DeleteMultipleCustomerSupportAppointments(List<CustomerSupportAppointment> customerSupportAppointments)
+        {
+            foreach (var custSupportAppoint in customerSupportAppointments)
+            {
+                await CustomerSupportAppointmentService.DeleteEntity(custSupportAppoint.AppointmentID,
+                      custSupportAppoint.CustomerSupportID);
+            }
+        }
+       
     }
 }

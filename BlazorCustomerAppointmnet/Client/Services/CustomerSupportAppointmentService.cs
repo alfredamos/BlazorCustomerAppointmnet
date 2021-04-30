@@ -18,11 +18,18 @@ namespace BlazorCustomerAppointmnet.Client.Services
         {
             _httpClient = httpClient;
         }
+
+        public async Task AddEntities(List<CustomerSupportAppointment> newEntities)
+        {
+            await _httpClient.PostJsonAsync($"{_baseUrl}/addmultiple", newEntities);
+        }
+
         public async Task<CustomerSupportAppointment> AddEntity(CustomerSupportAppointment newEntity)
         {
             return await _httpClient.PostJsonAsync<CustomerSupportAppointment>(_baseUrl, newEntity);
         }
 
+      
         public async Task DeleteEntity(int id)
         {
             await _httpClient.DeleteAsync($"{_baseUrl}/{id}");

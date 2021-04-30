@@ -116,6 +116,28 @@ namespace BlazorCustomerAppointmnet.Server.Controllers.CustomerSupportAppointmen
 
         }
 
+        [HttpPost("addmultiple")]
+        public async Task<IActionResult> PostCustomerSupportAppointments(List<CustomerSupportAppointment> customerSupportAppointments)
+        {
+            try
+            {
+                if (customerSupportAppointments == null)
+                {
+                    return BadRequest("Invalid input");
+                }
+
+                await _customerSupportAppointmentRepository.AddEntities(customerSupportAppointments);
+
+                return NoContent();
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error creating data.");
+            }
+
+        }
+
         // DELETE: api/CustomerSupportAppointments/5
         [HttpDelete("{idAppointment:int}/{idCustomerSupport:int}")]
         public async Task<ActionResult<CustomerSupportAppointment>> DeleteCustomerSupportAppointment(int idAppointment, int idCustomerSupport)

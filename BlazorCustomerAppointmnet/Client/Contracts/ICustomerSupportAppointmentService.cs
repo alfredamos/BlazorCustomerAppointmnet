@@ -10,5 +10,7 @@ namespace BlazorCustomerAppointmnet.Client.Contracts
     {
         Task<CustomerSupportAppointment> GetById(int idAppointment, int idCustomerSupport);
         Task DeleteEntity(int idAppointment, int idCustomerSupport);
+        Task AddEntities(List<CustomerSupportAppointment> newEntities);
+       
     }
 }

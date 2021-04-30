@@ -49,8 +49,6 @@ namespace BlazorCustomerAppointmnet.Client.Pages.Appointments
 
             CustomerSupportAppointment.AppointmentID = AppointmentDB.AppointmentID;
 
-            Console.WriteLine("AppointmentID : " + CustomerSupportAppointment.AppointmentID);
-
             Mapper.Map(AppointmentDB, Appointment);
             Mapper.Map(SupportEmployeesDB, SupportEmployees);
         }

@@ -17,12 +17,25 @@ namespace BlazorCustomerAppointmnet.Server.SQL
         {
             _context = context;
         }
+
+        public async Task AddEntities(List<CustomerSupportAppointment> customerSupportAppointments)
+        {
+            await _context.CustomerSupportAppointments.AddRangeAsync(customerSupportAppointments);
+            await _context.SaveChangesAsync();            
+        }
+
         public async Task<CustomerSupportAppointment> AddEntity(CustomerSupportAppointment newEntity)
         {
             var customerSupportAppointment = await _context.CustomerSupportAppointments.AddAsync(newEntity);
             await _context.SaveChangesAsync();
 
             return customerSupportAppointment.Entity;
+        }
+
+        public async Task DeleteEntities(List<CustomerSupportAppointment> customerSupportAppointments)
+        {
+            _context.CustomerSupportAppointments.RemoveRange(customerSupportAppointments);
+            await _context.SaveChangesAsync();            
         }
 
         public async Task<CustomerSupportAppointment> DeleteEntity(int id)
